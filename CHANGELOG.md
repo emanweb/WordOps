@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 #### Added
 
+-   Allow overriding the Ubuntu nginx PPA with `ppa` in the `[nginx]` section of `/etc/wo/wo.conf`
 -   Add PHP 8.4 support by @VirtuBox
 
 #### Changed

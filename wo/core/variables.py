@@ -118,6 +118,17 @@ class WOVar():
     # Nginx repo and packages
     if wo_distro == 'ubuntu':
         wo_nginx_repo = "ppa:wordops/nginx-wo"
+        # allow overriding the nginx ppa from /etc/wo/wo.conf
+        # [nginx]
+        # ppa = ppa:owner/nginx-wo
+        config = configparser.ConfigParser()
+        try:
+            config.read('/etc/wo/wo.conf')
+            custom_nginx_ppa = config.get('nginx', 'ppa').strip()
+            if match(r"^ppa:[a-z0-9.+-]+/[a-z0-9.+-]+$", custom_nginx_ppa):
+                wo_nginx_repo = custom_nginx_ppa
+        except configparser.Error:
+            pass
 
     else:
         if wo_distro == 'debian':
